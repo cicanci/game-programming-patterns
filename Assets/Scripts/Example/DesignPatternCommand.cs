@@ -12,7 +12,17 @@ public class DesignPatternCommand : MonoBehaviour
 
     private void Start()
     {
-        AssignCommands();
+        Refresh();
+    }
+
+    private void Refresh()
+    {
+        _commands.Shuffle();
+
+        _buttonA = _commands[0];
+        _buttonB = _commands[1];
+        _buttonX = _commands[2];
+        _buttonY = _commands[3];
     }
 
     public void ButtonA()
@@ -35,13 +45,8 @@ public class DesignPatternCommand : MonoBehaviour
         _buttonY.Execute();
     }
 
-    public void AssignCommands()
+    public void ButtonRefresh()
     {
-        _commands.Shuffle();
-
-        _buttonA = _commands[0];
-        _buttonB = _commands[1];
-        _buttonX = _commands[2];
-        _buttonY = _commands[3];
+        Refresh();
     }
 }
