@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DesignPatternCommand : MonoBehaviour
 {
@@ -48,5 +49,10 @@ public class DesignPatternCommand : MonoBehaviour
     public void ButtonRefresh()
     {
         Refresh();
+    }
+
+    public void ButtonBack()
+    {
+        SceneManager.LoadScene(0);
     }
 }
