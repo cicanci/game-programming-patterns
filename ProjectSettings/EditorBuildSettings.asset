@@ -9,6 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/DesignPatterns/DesignPatternCommand.unity
+    path: Assets/Scenes/Examples/DesignPatternCommand.unity
     guid: 251af9e0d803c4cecb5a00dbda45b5ac
+  - enabled: 1
+    path: Assets/Scenes/Examples/DecouplingPatternMessageQueue.unity
+    guid: 8fee0212f4b102644b5925537932da77
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
