@@ -3,16 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class MessageQueueExample : MonoBehaviour
 {
-    private MessageQueue messageQueue = new MessageQueue();
+    private MessageQueue _messageQueue = new MessageQueue();
 
     private void OnEnable()
     {
-        messageQueue.AddListener<UpdateColorMessage>(UpdateColor);
+        _messageQueue.AddListener<UpdateColorMessage>(UpdateColor);
     }
 
     private void OnDisable()
     {
-        messageQueue.RemoveListener<UpdateColorMessage>(UpdateColor);
+        _messageQueue.RemoveListener<UpdateColorMessage>(UpdateColor);
     }
 
     private void UpdateColor(UpdateColorMessage message)
@@ -22,22 +22,23 @@ public class MessageQueueExample : MonoBehaviour
 
     public void ButtonRed()
     {
-        messageQueue.SendMessage(new UpdateColorMessage { NewColor = Color.red });
+        var message = new UpdateColorMessage { NewColor = Color.red };
+        _messageQueue.SendMessage(message);
     }
 
     public void ButtonBlue()
     {
-        messageQueue.SendMessage(new UpdateColorMessage { NewColor = Color.blue });
+        _messageQueue.SendMessage(new UpdateColorMessage { NewColor = Color.blue });
     }
 
     public void ButtonGreen()
     {
-        messageQueue.SendMessage(new UpdateColorMessage { NewColor = Color.green });
+        _messageQueue.SendMessage(new UpdateColorMessage { NewColor = Color.green });
     }
 
     public void ButtonYellow()
     {
-        messageQueue.SendMessage(new UpdateColorMessage { NewColor = Color.yellow });
+        _messageQueue.SendMessage(new UpdateColorMessage { NewColor = Color.yellow });
     }
 
     public void ButtonBack()
