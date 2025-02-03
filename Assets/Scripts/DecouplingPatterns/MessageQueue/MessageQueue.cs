@@ -17,11 +17,11 @@ public class MessageQueue
     /// <returns>Whether it was sent sucessfuly or not for at least one message type.</returns>
     public bool SendMessage(object message)
     {
-        if (_listeners.TryGetValue(message.GetType(), out List<Delegate> messages))
+        if (_listeners.TryGetValue(message.GetType(), out List<Delegate> listeners))
         {
-            for (int i = 0; i < messages.Count; i++)
+            for (int i = 0; i < listeners.Count; i++)
             {
-                messages[i].DynamicInvoke(message);
+                listeners[i].DynamicInvoke(message);
             }
             return true;
         }
@@ -35,14 +35,14 @@ public class MessageQueue
     /// <param name="listener">The object of the message.</param>
     public void AddListener<T>(Action<T> listener)
     {
-        if (_listeners.TryGetValue(typeof(T), out List<Delegate> messages))
+        if (_listeners.TryGetValue(typeof(T), out List<Delegate> listeners))
         {
-            messages.Add(listener);
+            listeners.Add(listener);
         }
         else
         {
-            messages = new List<Delegate> { listener };
-            _listeners.Add(typeof(T), messages);
+            listeners = new List<Delegate> { listener };
+            _listeners.Add(typeof(T), listeners);
         }
     }
 
@@ -53,12 +53,12 @@ public class MessageQueue
     /// <param name="listener">The object of the message.</param>
     public void RemoveListener<T>(Action<T> listener)
     {
-        if (_listeners.TryGetValue(typeof(T), out List<Delegate> messages))
+        if (_listeners.TryGetValue(typeof(T), out List<Delegate> listeners))
         {
-            messages.Remove(listener);
+            listeners.Remove(listener);
 
             // It there are no listeners left, removes the type
-            if (messages.Count == 0)
+            if (listeners.Count == 0)
             {
                 _listeners.Remove(typeof(T));
             }
